@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Brendon Murphy"]
   s.email       = ["xternal1+github@gmail.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/bemurphy/rack-header-key"
   s.summary     = %q{Rack Middleware for authenticating requests via an http header}
   s.description = s.summary
 
