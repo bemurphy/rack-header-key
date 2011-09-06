@@ -1,6 +1,7 @@
 module Rack
   class HeaderKey
     AUTH_HEADER = "X_AUTHORIZATION_KEY".freeze
+    ALT_AUTH_HEADER = "HTTP_X_AUTHORIZATION_KEY".freeze
 
     def initialize(app, options)
       @app = app
@@ -33,7 +34,8 @@ module Rack
     private
 
     def token_ok?
-      @request.env[AUTH_HEADER] == @secret
+      header_key = @request.env[AUTH_HEADER] || @request.env[ALT_AUTH_HEADER]
+      header_key == @secret
     end
 
     def protected_path?

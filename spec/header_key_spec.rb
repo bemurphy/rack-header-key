@@ -39,6 +39,11 @@ describe "Requests using Rack::HeaderKey" do
       response.should be_allowed
     end
 
+    it "are allowed if the proper key is present in HTTP_X_AUTHORIZATION_KEY" do
+      response = Rack::MockRequest.new(app).get('/api/test', "HTTP_X_AUTHORIZATION_KEY" => key)
+      response.should be_allowed
+    end
+
     it "are unauthorized if the proper key is not in X_AUTHORIZATION_KEY" do
       response = Rack::MockRequest.new(app).get('/api/test', "X_AUTHORIZATION_KEY" => "bogus_key")
       response.should be_unauthorized
